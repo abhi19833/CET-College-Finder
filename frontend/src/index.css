@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-body antialiased;
+}
+
+#root {
+  @apply min-h-screen;
+}
+
+@layer components {
+  .field {
+    @apply block space-y-2;
+  }
+
+  .field-label {
+    @apply text-xs font-semibold uppercase tracking-[0.24em] text-slate-400;
+  }
+
+  .field-label.light {
+    @apply text-slate-500;
+  }
+
+  .field-input {
+    @apply w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300/50 focus:bg-white/[0.07] focus:ring-4 focus:ring-cyan-400/10;
+  }
+
+  .field-input.light {
+    @apply rounded-xl border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 hover:border-slate-400 focus:border-blue-500 focus:bg-white focus:ring-blue-500/10;
+  }
+
+  .field-input option {
+    @apply bg-slate-950 text-white;
+  }
+
+  .field-input.light option {
+    @apply bg-white text-slate-900;
+  }
+}
