@@ -35,6 +35,22 @@ npm run dev:frontend
 
 The frontend runs on `http://localhost:5173` and proxies API requests to `http://localhost:5000`.
 
+## Frontend API URL
+
+The frontend supports an environment variable for the backend base URL:
+
+```env
+VITE_API_BASE_URL=http://localhost:5000
+```
+
+For local development, Vite proxy still works if this is empty.
+
+For production, set `VITE_API_BASE_URL` in your frontend hosting provider to your deployed backend URL, for example:
+
+```env
+VITE_API_BASE_URL=https://your-backend-domain.com
+```
+
 ## Rebuild cutoff JSON
 
 ```powershell
