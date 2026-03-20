@@ -81,7 +81,13 @@ export default function App() {
     async function loadMeta(round) {
       try {
         const response = await fetch(`${api.meta}?round=${encodeURIComponent(round)}`);
-        const data = await response.json();
+        const contentType = response.headers.get("content-type") || "";
+        const data = contentType.includes("application/json")
+          ? await response.json()
+          : null;
+        if (!response.ok || !data) {
+          throw new Error("API did not return valid JSON. Check backend deployment logs.");
+        }
         setFilters({
           availableRounds: data.availableRounds || ["CAP Round I", "CAP Round II"],
           categoryGroups: data.filters.categoryGroups?.length
@@ -129,7 +135,13 @@ export default function App() {
         body: JSON.stringify(form),
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get("content-type") || "";
+      const data = contentType.includes("application/json")
+        ? await response.json()
+        : null;
+      if (!response.ok || !data) {
+        throw new Error("API did not return valid JSON. Check backend deployment logs.");
+      }
       if (!response.ok) {
         throw new Error(data.message || "Prediction failed.");
       }
