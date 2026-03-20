@@ -272,19 +272,19 @@ export default function App() {
             </Field>
 
             <Field label="Preferred branch">
-              <input
+              <select
                 className="field-input light"
                 name="branchSearch"
                 value={form.branchSearch}
                 onChange={handleChange}
-                list="branch-options"
-                placeholder="Type branch name"
-              />
-              <datalist id="branch-options">
+              >
+                <option value="">All branches</option>
                 {filters.branchOptions.map((branch) => (
-                  <option key={branch} value={branch} />
+                  <option key={branch} value={branch}>
+                    {branch}
+                  </option>
                 ))}
-              </datalist>
+              </select>
             </Field>
 
             <Field label="Preferred college">
