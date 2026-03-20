@@ -115,6 +115,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/api/health", (_req, res) => {
+  res.json({
+    ok: true,
+    rounds: Object.keys(datasets),
+  });
+});
+
 app.get("/api/meta", (req, res) => {
   const round = resolveRound(req.query.round);
   const dataset = datasets[round];
